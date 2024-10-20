@@ -17,7 +17,8 @@
             background-color: #6fa3ef;
             color: white;
             text-align: center;
-            padding: 1rem 0;
+            padding: 1.5rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         .container {
             width: 80%;
@@ -27,31 +28,49 @@
         h1 {
             text-align: center;
             color: #3e497a;
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
         }
         .bio-content {
             display: flex;
             flex-direction: row;
             gap: 2rem;
             margin-top: 2rem;
+            transition: all 0.3s ease-in-out;
         }
         .bio-content img {
             max-width: 300px;
             border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+        .bio-content img:hover {
+            transform: scale(1.05);
         }
         .bio-text {
             flex: 1;
+            transition: all 0.3s ease-in-out;
         }
         .contributions {
             margin-top: 3rem;
         }
         .contribution {
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
+            display: none;
         }
         .contribution img {
             max-width: 100%;
             height: auto;
             margin: 1rem 0;
             border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+        .contribution img:hover {
+            transform: scale(1.05);
+        }
+        .contribution h2 {
+            color: #3e497a;
         }
         footer {
             background-color: #6fa3ef;
@@ -69,6 +88,45 @@
         a:hover {
             text-decoration: underline;
         }
+        button {
+            padding: 10px 20px;
+            background-color: #3e497a;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.4s ease;
+            margin: 1rem 0;
+        }
+        button:hover {
+            background-color: #6fa3ef;
+        }
+        button:active {
+            transform: scale(1);
+        }
+        #content, #aportes-container {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        #back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: none;
+            background-color: #3e497a;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #back-button:hover {
+            background-color: #6fa3ef;
+        }
+        #aportes-buttons {
+            display: none;
+            margin-top: 1rem;
+        }
     </style>
 </head>
 <body>
@@ -77,46 +135,63 @@
     <h2>Leonhard Euler</h2>
 </header>
 
+<!-- Botón de regreso -->
+<div id="back-button">← Atrás</div>
+
+<!-- Contenido principal -->
 <div class="container">
     <h1>Contribuciones de Leonhard Euler a las Matemáticas</h1>
 
     <div class="bio-content">
-        <img src="Leonhard Euler.jpeg" alt="Leonhard Euler">
+        <img src="Leonhard_Euler_2.jpg" alt="Leonhard Euler">
         
         <div class="bio-text">
-            <p>Leonhard Euler (1707–1783) fue un matemático y físico suizo considerado como uno de los matemáticos más prolíficos y destacados de la historia. Su trabajo abarcó numerosas áreas de las matemáticas, incluida la teoría de números, la geometría, el álgebra y el análisis matemático.</p>
-            
-            <p>Nacido en Basilea, Suiza, Euler estudió bajo la tutela de Johann Bernoulli y más tarde se trasladó a la Academia de Ciencias de San Petersburgo, en Rusia. Fue allí donde realizó algunos de sus trabajos más significativos. También trabajó en la Academia de Berlín por varios años antes de regresar a San Petersburgo, donde pasó el resto de su vida.</p>
-            
-            <p>Entre sus contribuciones más famosas se encuentran la introducción de la notación matemática moderna, la función exponencial, el número <em>e</em> (conocido como el número de Euler), y numerosas ecuaciones diferenciales y funciones trigonométricas.</p>
-            
-            <p>A pesar de quedar ciego en los últimos años de su vida, Euler siguió produciendo una asombrosa cantidad de trabajos matemáticos, dictando sus descubrimientos a sus hijos y estudiantes. Su legado sigue siendo central en la matemática moderna.</p>
-             
-            <p>A continuación, exploraremos tres de sus contribuciones más importantes al mundo de las matemáticas.</p>
+            <button id="historia-btn">Historia</button>
+            <button id="aportes-btn">Aportes</button>
         </div>
     </div>
 
+    <!-- Contenido dinámico para la historia -->
+    <div id="content">
+        <p>Leonhard Euler (1707–1783) fue un matemático y físico suizo considerado como uno de los matemáticos más prolíficos y destacados de la historia. Su trabajo abarcó numerosas áreas de las matemáticas, incluida la teoría de números, la geometría, el álgebra y el análisis matemático.</p>
+        <p>Nacido en Basilea, Suiza, Euler estudió bajo la tutela de Johann Bernoulli y más tarde se trasladó a la Academia de Ciencias de San Petersburgo, en Rusia. Fue allí donde realizó algunos de sus trabajos más significativos. También trabajó en la Academia de Berlín por varios años antes de regresar a San Petersburgo, donde pasó el resto de su vida.</p>
+        <p>Entre sus contribuciones más famosas se encuentran la introducción de la notación matemática moderna, la función exponencial, el número <em>e</em> (conocido como el número de Euler), y numerosas ecuaciones diferenciales y funciones trigonométricas.</p>
+        <p>A pesar de quedar ciego en los últimos años de su vida, Euler siguió produciendo una asombrosa cantidad de trabajos matemáticos, dictando sus descubrimientos a sus hijos y estudiantes. Su legado sigue siendo central en la matemática moderna.</p>
+    </div>
+
+    <!-- Botones de selección de aportes -->
+    <div id="aportes-buttons">
+        <button id="funcion-exponencial-btn">Función Exponencial</button>
+        <button id="identidad-euler-btn">Identidad de Euler</button>
+        <button id="numero-e-btn">Número e</button>
+    </div>
+
+    <!-- Aportes -->
     <div class="contributions">
 
-        <!-- Contribución 1 -->
-        <div class="contribution">
+        <!-- Contribución 1: Función Exponencial -->
+        <div id="funcion-exponencial" class="contribution">
             <h2>1. La Función Exponencial</h2>
             <img src="Función exponencial.jpg" alt="Función exponencial">
-            <p>Euler fue pionero en el estudio de la **función exponencial**, la cual describe el crecimiento exponencial y se expresa como <em>f(x) = a<sup>x</sup></em>, donde <em>e</em> es la base del logaritmo natural. Esta función es fundamental en el cálculo, y aparece en áreas como la física, la biología y la economía, describiendo fenómenos como el crecimiento poblacional y la desintegración radiactiva.</p>
+            <p>Euler fue pionero en el estudio de la función exponencial, la cual describe el crecimiento exponencial y se expresa como <em>f(x) = a<sup>x</sup></em>, donde <em>e</em> es la base del logaritmo natural. Esta función es fundamental en el cálculo y aparece en áreas como la física, la biología y la economía, describiendo fenómenos como el crecimiento poblacional y la desintegración radiactiva.</p>
+            <p>Además, la función exponencial es crucial en las ecuaciones diferenciales y tiene aplicaciones en ingeniería, modelado de sistemas y más.</p>
         </div>
 
-        <!-- Contribución 2 -->
-        <div class="contribution">
+        <!-- Contribución 2: Identidad de Euler -->
+        <div id="identidad-euler" class="contribution">
             <h2>2. La Identidad de Euler</h2>
             <img src="La Identidad de Euler.png" alt="Identidad de Euler">
             <p>Considerada por muchos como la fórmula más bella de las matemáticas, la Identidad de Euler combina cinco de los números más importantes: <em>e</em>, <em>i</em> (la unidad imaginaria), <em>π</em>, 1 y 0, en la ecuación <strong>e<sup>iπ</sup> + 1 = 0</strong>. Esta simple ecuación conecta el análisis, el álgebra y la geometría en una expresión única y elegante.</p>
+            <p>La identidad tiene profundas implicaciones en la teoría de números, las ecuaciones diferenciales y la física cuántica, donde aparece de manera recurrente.</p>
         </div>
 
-        <!-- Contribución 3 -->
-        <div class="contribution">
+        <!-- Contribución 3: Número de Euler (e) -->
+        <div id="numero-e" class="contribution">
             <h2>3. El Número de Euler (<em>e</em>) y el Cálculo</h2>
             <img src="Número de Euler.png" alt="Número de Euler">
-            <p>Euler fue uno de los primeros matemáticos en estudiar el número <em>e</em>, la base de los logaritmos naturales. También fue pionero en la utilización de <em>e</em> en el desarrollo del cálculo, definiendo la función exponencial y estableciendo el vínculo entre el crecimiento exponencial y el cálculo diferencial e integral.</p>
+            <p>Euler fue uno de los primeros matemáticos en estudiar el número <em>e</em>, la base de los logaritmos naturales, que aproximadamente es 2.71828. Este número es fundamental para describir el crecimiento continuo y aparece en muchas fórmulas del cálculo. La ecuación que define el número <em>e</em> es:</p>
+            <p><strong>e = lim (1 + 1/n)<sup>n</sup> cuando n tiende a infinito.</strong></p>
+            <p>Este número está presente en áreas como la teoría de números, el cálculo diferencial e integral, y es clave en las ecuaciones que modelan fenómenos naturales como el crecimiento exponencial y el interés compuesto.</p>
         </div>
 
     </div>
@@ -125,6 +200,72 @@
 <footer>
     <p>© 2024, Página dedicada a Leonhard Euler - Diseñada con amor</p>
 </footer>
+
+<script>
+    const historiaBtn = document.getElementById("historia-btn");
+    const aportesBtn = document.getElementById("aportes-btn");
+    const content = document.getElementById("content");
+    const bioContent = document.querySelector(".bio-content");
+    const backButton = document.getElementById("back-button");
+    const aportesButtons = document.getElementById("aportes-buttons");
+    const funcionExponencial = document.getElementById("funcion-exponencial");
+    const identidadEuler = document.getElementById("identidad-euler");
+    const numeroE = document.getElementById("numero-e");
+
+    // Botones de selección de aportes
+    const funcionExponencialBtn = document.getElementById("funcion-exponencial-btn");
+    const identidadEulerBtn = document.getElementById("identidad-euler-btn");
+    const numeroEBtn = document.getElementById("numero-e-btn");
+
+    // Mostrar la historia
+    historiaBtn.addEventListener("click", () => {
+        bioContent.style.display = "none";
+        content.style.display = "block";
+        content.style.opacity = "1";
+        backButton.style.display = "block";
+        aportesButtons.style.display = "none";
+    });
+
+    // Mostrar los aportes
+    aportesBtn.addEventListener("click", () => {
+        content.style.display = "none";
+        aportesButtons.style.display = "block";
+        backButton.style.display = "block";
+        funcionExponencial.style.display = "none";
+        identidadEuler.style.display = "none";
+        numeroE.style.display = "none";
+    });
+
+    // Botones de cada aporte
+    funcionExponencialBtn.addEventListener("click", () => {
+        funcionExponencial.style.display = "block";
+        identidadEuler.style.display = "none";
+        numeroE.style.display = "none";
+    });
+
+    identidadEulerBtn.addEventListener("click", () => {
+        funcionExponencial.style.display = "none";
+        identidadEuler.style.display = "block";
+        numeroE.style.display = "none";
+    });
+
+    numeroEBtn.addEventListener("click", () => {
+        funcionExponencial.style.display = "none";
+        identidadEuler.style.display = "none";
+        numeroE.style.display = "block";
+    });
+
+    // Regresar al inicio
+    backButton.addEventListener("click", () => {
+        bioContent.style.display = "flex";
+        content.style.display = "none";
+        aportesButtons.style.display = "none";
+        backButton.style.display = "none";
+        funcionExponencial.style.display = "none";
+        identidadEuler.style.display = "none";
+        numeroE.style.display = "none";
+    });
+</script>
 
 </body>
 </html>
