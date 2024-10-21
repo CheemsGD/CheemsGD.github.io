@@ -1,47 +1,133 @@
-<style>
-    /* Mantén tu estilo actual */
-
-    /* Estilos para pantallas pequeñas (móviles) */
-    @media (max-width: 600px) {
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contribuciones matemáticas de Leonhard Euler, uno de los matemáticos más importantes de la historia.">
+    <title>Contribuciones de Leonhard Euler a las Matemáticas</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #6fa3ef;
+            color: white;
+            text-align: center;
+            padding: 1.5rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
         .container {
-            width: 95%;
-            padding: 1rem;
+            width: 80%;
+            margin: 0 auto;
+            padding: 2rem;
         }
         h1 {
-            font-size: 1.8rem;
+            text-align: center;
+            color: #3e497a;
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
         }
         .bio-content {
-            flex-direction: column;
-            align-items: center;
+            display: flex;
+            flex-direction: row;
+            gap: 2rem;
+            margin-top: 2rem;
+            transition: all 0.3s ease-in-out;
         }
         .bio-content img {
-            max-width: 200px; /* Ajusta el tamaño de la imagen */
+            max-width: 300px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
         }
-        button {
-            font-size: 0.9rem;
-            padding: 8px 16px; /* Ajusta el tamaño de los botones */
+        .bio-content img:hover {
+            transform: scale(1.05);
+        }
+        .bio-text {
+            flex: 1;
+            transition: all 0.3s ease-in-out;
+        }
+        .contributions {
+            margin-top: 3rem;
+        }
+        .contribution {
+            margin-bottom: 3rem;
+            display: none;
         }
         .contribution img {
             max-width: 100%;
+            height: auto;
+            margin: 1rem 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+        .contribution img:hover {
+            transform: scale(1.05);
+        }
+        .contribution h2 {
+            color: #3e497a;
         }
         footer {
-            font-size: 0.8rem;
+            background-color: #6fa3ef;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
         }
-    }
-
-    @media (max-width: 400px) {
-        h1 {
-            font-size: 1.5rem;
+        a {
+            color: #3e497a;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
         }
         button {
-            font-size: 0.8rem;
-            padding: 6px 12px;
+            padding: 10px 20px;
+            background-color: #3e497a;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.4s ease;
+            margin: 1rem 0;
         }
-        .bio-content img {
-            max-width: 150px; /* Imagen más pequeña en pantallas muy pequeñas */
+        button:hover {
+            background-color: #6fa3ef;
         }
-    }
-</style>
+        button:active {
+            transform: scale(1);
+        }
+        #content, #aportes-container {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        #back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: none;
+            background-color: #3e497a;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #back-button:hover {
+            background-color: #6fa3ef;
+        }
+        #aportes-buttons {
+            display: none;
+            margin-top: 1rem;
+        }
+    </style>
 </head>
 <body>
 
